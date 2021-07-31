@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Tom's retail calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1 style="margin-bottom:50px">Tom's retail calculator</h1>
+        {% if quantity %}
+        <div style="margin-bottom:50px">
+            <p class="lead">{{ quantity }} items ${{ price }} each in {{ state }}.</p>
+            <p class="lead">Subtotal: ${{ subtotal }}.</p>
+            <p class="lead">Total: ${{ total }}.</p>
+        </div>
+        {% elif error %}
+        <div class="alert alert-danger" role="alert">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+        <form action="/index.html" method="post">
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity of goods</label>
+            <input id="quantity" type="text" class="form-control" name="quantity">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price per item</label>
+            <input id="price" type="text" class="form-control" name="price">
+        </div>
+        <div class="mb-3">
+            <label for="state" class="form-label">State</label>
+            <select id="state" class="form-select" name="state">
+                <option>UT</option>
+                <option>NV</option>
+                <option>TX</option>
+                <option>AL</option>
+                <option>CA</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Calculate</button>
+    </form>
+    </div>
+</body>
+</html>
